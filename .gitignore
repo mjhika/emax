@@ -1,0 +1,9 @@
+eln-cache/
+auto-save-list/
+elpa/
+transient/
+
+.lsp-session-*
+history
+
+*.eld
