@@ -161,7 +161,9 @@
 
 (use-package go-mode
   :ensure t
-  :hook (go-mode . lsp-go-install-save-hooks))
+  :hook
+  (go-mode . lsp-go-install-save-hooks)
+  (go-mode . subword-mode))
 
 (use-package company
   :ensure t
