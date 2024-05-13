@@ -15,7 +15,8 @@
 (setq vc-follow-symlinks t
       inhibit-startup-message t
       display-fill-column-indicator-column 80
-      ring-bell-function 'ignore)
+      ring-bell-function 'ignore
+      read-process-output-max (* 1024 1024))
 
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
@@ -127,9 +128,10 @@
   :hook
   ((c-mode
     clojure-mode
-    go-mode) . lsp-deferred)
+    go-mode)
+   . lsp-deferred)
   (lsp-mode . lsp-enable-which-key-integration)
-  :commands lsp)
+  :commands (lsp lsp-deferred))
 
 (use-package lsp-ui
   :ensure t
