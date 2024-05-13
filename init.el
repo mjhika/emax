@@ -14,7 +14,8 @@
 
 (setq vc-follow-symlinks t
       inhibit-startup-message t
-      display-fill-column-indicator-column 80)
+      display-fill-column-indicator-column 80
+      ring-bell-function 'ignore)
 
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
