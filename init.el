@@ -155,15 +155,19 @@
   (lsp-mode . flycheck-mode))
 
 (use-package clojure-mode
-  :ensure t)
+  :ensure t
+  :hook (clojure-mode . subword-mode))
 
 (use-package cider
   :ensure t
   :init
   (setq cider-enrich-classpath t
 	cider-repl-pop-to-buffer-on-connect nil
-	clojure-toplevel-inside-comment-form t)
-  :hook (clojure-mode . cider))
+	clojure-toplevel-inside-comment-form t
+	cider-preferred-build-tool 'clojure-cli
+	cider-repl-use-pretty-printing t
+	cider-enable-flex-completion t)
+  :hook (clojure-mode . cider-mode))
 
 (defun lsp-go-install-save-hooks ()
   (add-hook 'before-save-hook #'lsp-format-buffer t t)
