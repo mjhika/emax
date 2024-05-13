@@ -71,7 +71,7 @@
 (use-package projectile
   :ensure t
   :bind ("s-p" . projectile-command-map)
-  :config
+  :init
   (projectile-mode +1))
 
 (use-package smartparens
