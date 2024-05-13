@@ -76,53 +76,55 @@
 
 (use-package smartparens
   :ensure t
-  ;; :hook ((prog-mode text-mode markdown-mode) . smartparens-strict-mode)
+  :custom
+  (sp-hybrid-kill-excessive-whitespace t)
   :bind (:map smartparens-mode-map
+	 ("C-M-a" . sp-beginning-of-sexp)
+	 ("C-M-e" . sp-end-of-sexp)
+
+	 ("C-<down>" . sp-down-sexp)
+	 ("C-<up>" . sp-up-sexp)
+	 ("M-<down>" . sp-backward-down-sexp)
+	 ("M-<up>" . sp-backward-up-sexp)
+
+	 ("C-S-n" . sp-next-sexp)
+	 ("C-S-p" . sp-backward-sexp)
+
 	 ("C-M-f" . sp-forward-sexp)
 	 ("C-M-b" . sp-backward-sexp)
 
-	 ("C-M-d" . sp-down-sexp)
-	 ("C-M-a" . sp-backward-down-sexp)
-	 ("C-S-d" . sp-beginning-of-sexp)
-	 ("C-S-a" . sp-end-of-sexp)
-
-	 ("C-M-e" . sp-up-sexp)
-	 ("C-M-u" . sp-backward-up-sexp)
-	 ("C-M-t" . sp-transpose-sexp)
-
-	 ("C-M-n" . sp-forward-hybrid-sexp)
-	 ("C-M-p" . sp-backward-hybrid-sexp)
-
-	 ("C-M-k" . sp-kill-sexp)
-	 ("C-M-w" . sp-copy-sexp)
-
-	 ("M-<delete>" . sp-unwrap-sexp)
-	 ("M-<backspace>" . sp-backward-unwrap-sexp)
+	 ("C-S-f" . sp-forward-symbol)
+	 ("C-S-b" . sp-backward-symbol)
 
 	 ("C-<right>" . sp-forward-slurp-sexp)
 	 ("C-<left>" . sp-forward-barf-sexp)
-	 ("C-M-<left>" . sp-backward-slurp-sexp)
-	 ("C-M-<right>" . sp-backward-barf-sexp)
+	 ("M-<left>" . sp-backward-slurp-sexp)
+	 ("M-<right>" . sp-backward-barf-sexp)
 
-	 ("M-D" . sp-splice-sexp)
-	 ("C-M-<delete>" . sp-splice-sexp-killing-forward)
-	 ("C-M-<backspace>" . sp-splice-sexp-killing-backward)
-	 ("C-S-<backspace>" . sp-splice-sexp-killing-around)
+	 ("C-M-k" . sp-kill-sexp)
+	 ("C-M-<backspace>" . sp-backward-kill-sexp)
+	 ("C-S-k" . sp-kill-hybrid-sexp)
 
-	 ("C-]" . sp-select-next-thing-exchange)
-	 ("C-<left_bracket>" . sp-select-previous-thing)
-	 ("C-M-]" . sp-select-next-thing)
+	 ("M-<backspace>" . backward-kill-word)
+	 ("C-<backspace>" . sp-backward-kill-word)
+	 ([remap sp-backward-kill-word] . backward-kill-word)
+	 ("M-d" . sp-kill-word)
 
-	 ("M-F" . sp-forward-symbol)
-	 ("M-B" . sp-backward-symbol)
+	 ("C-M-t" . sp-transpose-sexp)
+	 ("C-x C-t" . sp-transpose-hybrid-sexp)
+	 ("C-M-w" . sp-copy-sexp)
+	 ("C-M-d" . sp-delete-sexp)
 
-	 ("C-\"" . sp-change-inner)
+	 ("M-[" . sp-backward-unwrap-sexp)
+	 ("M-]" . sp-unwrap-sexp)
+
+	 ("C-M-i" . sp-change-inner)
 	 ("M-i" . sp-change-enclosing)
 
-	 ("s-(" . sp-wrap-round)
-	 ("s-[" . sp-wrap-square)
-	 ("s-{" . sp-wrap-curly))
-  :config
+	 ("C-c (" . sp-wrap-round)
+	 ("C-c [" . sp-wrap-square)
+	 ("C-c {" . sp-wrap-curly))
+  :init
   (require 'smartparens-config)
   (smartparens-global-strict-mode 1))
 
