@@ -9,7 +9,7 @@
 (setq gc-cons-threshold (eval-when-compile (* 1024 1024 100)))
 (run-with-idle-timer 2 t (lambda () (garbage-collect)))
 
-(load-theme 'modus-operandi)
+(load-theme 'modus-operandi t)
 (set-frame-font "Berkeley Mono 12" nil t)
 
 (setq vc-follow-symlinks t
