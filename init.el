@@ -191,12 +191,14 @@
   (prog-mode . yas-minor-mode))
 
 (setq backup-by-copying t
-      backup-directory-alist
-      '(("." . "~/.cache/emacsbackups"))
+      backup-directory-alist '(("." . "~/.cache/emacs/backups"))
+      auto-save-file-name-transforms '((".*" "~/.cache/emacs/autosaves/\\1" t))
       delete-old-versions t
       kept-new-versions 6
       kept-old-versions 2
       version-control t)
+
+(make-directory "~/.cache/emacs/autosaves" t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
