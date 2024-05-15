@@ -156,6 +156,13 @@
   :hook
   (lsp-mode . flycheck-mode))
 
+(use-package emacs-lisp-mode
+  :ensure nil
+  :bind
+  ("C-c C-c" . eval-defun)
+  ("C-c C-e" . eval-last-sexp)
+  ("C-c C-k" . elisp-eval-region-or-buffer))
+
 (use-package clojure-mode
   :ensure t
   :hook (clojure-mode . subword-mode))
