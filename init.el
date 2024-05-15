@@ -211,6 +211,17 @@
 
 (make-directory "~/.cache/emacs/autosaves" t)
 
+(defun mjhika/open-init-file ()
+  "Open the init file."
+  (interactive)
+  (find-file user-init-file))
+
+(bind-keys* :prefix-map mjhika/toggles-prefix
+	    :prefix "s-t"
+	    ("t" . modus-themes-toggle))
+
+(bind-keys* ("s-f" . mjhika/open-init-file))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
