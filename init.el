@@ -171,6 +171,15 @@
 	cider-enable-flex-completion t)
   :hook (clojure-mode . cider-mode))
 
+(use-package clj-refactor
+  :ensure t
+  :after cider
+  :hook (clojure-mode . (lambda ()
+			  (interactive)
+			  (clj-refactor-mode 1)
+			  (yas-minor-mode 1)
+			  (cljr-add-keybindings-with-prefix "C-c C-a"))))
+
 (defun lsp-go-install-save-hooks ()
   (add-hook 'before-save-hook #'lsp-format-buffer t t)
   (add-hook 'before-save-hook #'lsp-organize-imports t t))
@@ -208,7 +217,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(crux doom-modeline projectile direnv yasnippet company flycheck lsp-ui lsp-mode cider clojure-mode orderless smartparens which-key vertico)))
+   '(clj-refactor emacs-lisp-mode elisp-mode crux doom-modeline projectile direnv yasnippet company flycheck lsp-ui lsp-mode cider clojure-mode orderless smartparens which-key vertico)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
