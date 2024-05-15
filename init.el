@@ -227,7 +227,8 @@
 	    :prefix "s-t"
 	    ("t" . modus-themes-toggle))
 
-(bind-keys* ("s-f" . mjhika/open-init-file))
+(bind-keys* ("s-f" . mjhika/open-init-file)
+	    ("C-x C-b" . ibuffer))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
