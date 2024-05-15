@@ -2,7 +2,9 @@
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
 			 ("gnu" . "http://elpa.gnu.org/packages/")))
 
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
+(require 'bind-key)
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
 
