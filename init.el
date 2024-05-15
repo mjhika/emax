@@ -139,7 +139,7 @@
   ("C-c r" . lsp-format-region)
   :hook
   ((c-mode
-    clojure-mode
+    ;; clojure-mode
     go-mode)
    . lsp-deferred)
   (lsp-mode . lsp-enable-which-key-integration)
