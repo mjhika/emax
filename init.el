@@ -133,10 +133,12 @@
 ;; LSP
 (use-package lsp-mode
   :ensure t
-  :bind
-  ("s-l" . lsp)
-  ("C-c f" . lsp-format-buffer)
-  ("C-c r" . lsp-format-region)
+  :config
+  (bind-keys ("s-l" . lsp))
+  (bind-keys :prefix-map mjhika/lsp-format
+	     :prefix "C-c f"
+	     ("f" . lsp-format-buffer)
+	     ("r" . lsp-format-region))
   :hook
   ((c-mode
     ;; clojure-mode
@@ -176,6 +178,12 @@
 	cider-preferred-build-tool 'clojure-cli
 	cider-repl-use-pretty-printing t
 	cider-enable-flex-completion t)
+  :config
+  (bind-keys :prefix-map mjhika/cider-format
+	     :prefix "C-c f"
+	     ("f" . cider-format-buffer)
+	     ("r" . cider-format-region)
+	     ("d" . cider-format-defun))
   :hook (clojure-mode . cider-mode))
 
 (use-package clj-refactor
