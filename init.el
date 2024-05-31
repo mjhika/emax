@@ -274,6 +274,17 @@
 (bind-keys* ("s-f" . mjhika/open-init-file)
 	    ("C-x C-b" . ibuffer))
 
+(use-package erc
+  :ensure nil
+  :init
+  (setq erc-nick "mjhika"
+	erc-user-full-name "mjhika")
+
+  (defun mjhika/erc->libera ()
+    (interactive)
+    (erc-tls :server "irc.libera.chat"
+	     :port 6697)))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
