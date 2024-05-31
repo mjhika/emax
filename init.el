@@ -242,7 +242,8 @@
 
 (use-package company
   :ensure t
-  :init (setq company-idle-delay 0.2)
+  :init (setq company-idle-delay 0.2
+	      company-minimum-prefix-length 1)
   :hook
   (prog-mode . company-mode))
 
