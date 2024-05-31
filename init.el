@@ -1,5 +1,6 @@
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
+			 ("nongnu" . "https://elpa.nongnu.org/nongnu/")
 			 ("gnu" . "http://elpa.gnu.org/packages/")))
 
 (eval-when-compile
@@ -51,6 +52,9 @@
   (setq doom-modeline-icon nil)
   (doom-modeline-mode 1)
   :hook (after-init . doom-modeline-mode))
+
+(use-package eat
+  :ensure t)
 
 (use-package which-key
   :ensure t
@@ -275,7 +279,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(ligature clj-refactor emacs-lisp-mode elisp-mode crux doom-modeline projectile direnv yasnippet company flycheck lsp-ui lsp-mode cider clojure-mode orderless smartparens which-key vertico)))
+   '(eat ligature clj-refactor emacs-lisp-mode elisp-mode crux doom-modeline projectile direnv yasnippet company flycheck lsp-ui lsp-mode cider clojure-mode orderless smartparens which-key vertico)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
