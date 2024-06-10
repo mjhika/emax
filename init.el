@@ -283,7 +283,8 @@
   (defun mjhika/erc->libera ()
     (interactive)
     (erc-tls :server "irc.libera.chat"
-	     :port 6697)))
+	     :port 6697
+	     :password (shell-command-to-string "bb -o '(-> (clojure.java.shell/sh \"op\" \"item\" \"get\" \"fwjq4wl52sancfp66bbu23zube\" \"--format\" \"json\") :out (json/parse-string keyword) :fields (nth 1) :value)'"))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
