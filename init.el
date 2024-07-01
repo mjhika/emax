@@ -72,7 +72,8 @@
   (global-set-key [remap move-beginning-of-line] #'crux-move-beginning-of-line)
   (global-set-key [(super return)] #'crux-smart-open-line-above)
   (global-set-key (kbd "C-<return>") #'crux-smart-open-line)
-  (global-set-key (kbd "C-c g x") #'crux-view-url))
+  (global-set-key (kbd "C-c g x") #'crux-view-url)
+  (global-set-key (kbd "C-x w t") #'crux-transpose-windows))
 
 (use-package projectile
   :ensure t
