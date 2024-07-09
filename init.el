@@ -12,7 +12,8 @@
 (setq gc-cons-threshold (eval-when-compile (* 1024 1024 100)))
 (run-with-idle-timer 2 t (lambda () (garbage-collect)))
 
-(load-theme 'modus-operandi t)
+(if (display-graphic-p)
+    (load-theme 'modus-operandi t))
 (set-frame-font "Berkeley Mono 12" nil t)
 
 (setq vc-follow-symlinks t
@@ -86,6 +87,7 @@
   :custom
   (sp-hybrid-kill-excessive-whitespace t)
   :bind (:map smartparens-mode-map
+	 ("C-M-<space>" . sp-mark-sexp)
 	 ("C-M-a" . sp-beginning-of-sexp)
 	 ("C-M-e" . sp-end-of-sexp)
 
@@ -177,8 +179,9 @@
 	     ("r" . lsp-format-region))
   :hook
   ((c-mode
-    ;; clojure-mode
-    go-mode)
+    clojure-mode
+    go-mode
+    zig-mode)
    . lsp-deferred)
   (lsp-mode . lsp-enable-which-key-integration)
   :commands (lsp lsp-deferred))
@@ -241,6 +244,8 @@
   (go-mode . lsp-go-install-save-hooks)
   (go-mode . subword-mode))
 
+(use-package zig-mode
+  :ensure t)
 (use-package company
   :ensure t
   :init (setq company-idle-delay 0.2
