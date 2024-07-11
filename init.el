@@ -177,6 +177,7 @@
 	     :prefix "C-c f"
 	     ("f" . lsp-format-buffer)
 	     ("r" . lsp-format-region))
+  (setq lsp-completion-provider :none)
   :hook
   ((c-mode
     clojure-mode
@@ -217,13 +218,16 @@
 	cider-preferred-build-tool 'clojure-cli
 	cider-repl-use-pretty-printing t
 	cider-enable-flex-completion t)
+  (defun mjhika/cider-comp ()
+    (setq-local lsp-completion-enable nil))
   :config
   (bind-keys :prefix-map mjhika/cider-format
 	     :prefix "C-c f"
 	     ("f" . cider-format-buffer)
 	     ("r" . cider-format-region)
 	     ("d" . cider-format-defun))
-  :hook (clojure-mode . cider-mode))
+  :hook ((clojure-mode . cider-mode)
+	 (cider-mode . mjhika/cider-comp)))
 
 (use-package clj-refactor
   :ensure t
@@ -246,12 +250,24 @@
 
 (use-package zig-mode
   :ensure t)
-(use-package company
+
+(use-package corfu
   :ensure t
-  :init (setq company-idle-delay 0.2
-	      company-minimum-prefix-length 1)
-  :hook
-  (prog-mode . company-mode))
+  :custom
+  (corfu-auto t)
+  (corfu-preselect 'directory)
+  (corfu-popupinfo-delay 0.5)
+  :bind
+  (:map corfu-map
+	("RET" . nil))
+  :init
+  (global-corfu-mode)
+  (corfu-popupinfo-mode 1))
+
+(use-package emacs
+  :custom
+  (tab-always-indent t)
+  (read-extended-command-predicate #'command-completion-default-include-p))
 
 (use-package yasnippet
   :ensure t
@@ -298,7 +314,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(eat ligature clj-refactor emacs-lisp-mode elisp-mode crux doom-modeline projectile direnv yasnippet company flycheck lsp-ui lsp-mode cider clojure-mode orderless smartparens which-key vertico)))
+   '(corfu-popupinfo-mode corfu eat ligature clj-refactor emacs-lisp-mode elisp-mode crux doom-modeline projectile direnv yasnippet flycheck lsp-ui lsp-mode cider clojure-mode orderless smartparens which-key vertico)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
