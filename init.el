@@ -14,7 +14,8 @@
 
 (if (display-graphic-p)
     (load-theme 'modus-operandi t))
-(set-frame-font "Berkeley Mono 12" nil t)
+(cond ((eq system-type "darwin") (set-frame-font "Berkeley Mono 12" nil t))
+      ((eq system-type "gnu/linux") (set-frame-font "Berkeley Mono 10" nil t) ))
 
 (setq vc-follow-symlinks t
       inhibit-startup-message t
