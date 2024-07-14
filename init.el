@@ -30,6 +30,8 @@
 (column-number-mode 1)
 (setopt use-short-answers t)
 
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 (use-package vertico
   :ensure t
   :custom
