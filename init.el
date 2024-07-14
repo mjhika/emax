@@ -295,7 +295,8 @@
 
 (bind-keys* :prefix-map mjhika/toggles-prefix
 	    :prefix "s-t"
-	    ("t" . modus-themes-toggle))
+	    ("t s" . smartparens-strict-mode)
+	    ("t t" . modus-themes-toggle))
 
 (bind-keys* ("s-f" . mjhika/open-init-file)
 	    ("C-x C-b" . ibuffer))
