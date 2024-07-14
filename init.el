@@ -295,13 +295,20 @@
   (interactive)
   (find-file user-init-file))
 
+(defun pull-next-line()
+  (interactive)
+  (move-end-of-line 1)
+  (kill-line)
+  (just-one-space))
+
 (bind-keys* :prefix-map mjhika/toggles-prefix
 	    :prefix "s-t"
 	    ("t s" . smartparens-strict-mode)
 	    ("t t" . modus-themes-toggle))
 
 (bind-keys* ("s-f" . mjhika/open-init-file)
-	    ("C-x C-b" . ibuffer))
+	    ("C-x C-b" . ibuffer)
+	    ("C-j" . pull-next-line))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
