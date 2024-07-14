@@ -85,8 +85,6 @@
 
 (use-package smartparens
   :ensure t
-  :custom
-  (sp-hybrid-kill-excessive-whitespace t)
   :bind (:map smartparens-mode-map
 	 ("C-M-<space>" . sp-mark-sexp)
 	 ("C-M-a" . sp-beginning-of-sexp)
@@ -260,7 +258,9 @@
   (corfu-popupinfo-delay 0.5)
   :bind
   (:map corfu-map
-	("RET" . nil))
+	("RET" . nil)
+	("TAB" . indent-for-tab-command)
+	("C-y" . corfu-complete))
   :init
   (global-corfu-mode)
   (corfu-popupinfo-mode 1))
