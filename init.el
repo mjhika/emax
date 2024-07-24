@@ -15,8 +15,8 @@
   (run-with-idle-timer 2 t (lambda () (garbage-collect)))
 
   (cl-ecase system-type
-    ('darwin (set-frame-font "Berkeley Mono 12" nil t))
-    ('gnu/linux (set-frame-font "Berkeley Mono 10" nil t)))
+    (darwin (set-frame-font "Berkeley Mono 12" nil t))
+    (gnu/linux (set-frame-font "Berkeley Mono 10" nil t)))
 
   (menu-bar-mode 1)
   (scroll-bar-mode -1)
