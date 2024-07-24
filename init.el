@@ -7,30 +7,43 @@
   (require 'use-package))
 (require 'bind-key)
 (require 'use-package-ensure)
-(setq use-package-always-ensure t)
+;; (setq use-package-always-ensure t)
 
-(setq gc-cons-threshold (eval-when-compile (* 1024 1024 100)))
-(run-with-idle-timer 2 t (lambda () (garbage-collect)))
+(use-package emacs
+  :ensure t
+  :config
+  (run-with-idle-timer 2 t (lambda () (garbage-collect)))
 
-(if (display-graphic-p)
-    (load-theme 'modus-operandi t))
-(cond ((eq system-type "darwin") (set-frame-font "Berkeley Mono 12" nil t))
-      ((eq system-type "gnu/linux") (set-frame-font "Berkeley Mono 10" nil t) ))
+  (cl-ecase system-type
+    ('darwin (set-frame-font "Berkeley Mono 12" nil t))
+    ('gnu/linux (set-frame-font "Berkeley Mono 10" nil t)))
 
-(setq vc-follow-symlinks t
-      inhibit-startup-message t
-      display-fill-column-indicator-column 80
-      ring-bell-function 'ignore
-      read-process-output-max (* 1024 1024))
+  (menu-bar-mode 1)
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (pixel-scroll-precision-mode 1)
+  (column-number-mode 1)
+  (global-display-line-numbers-mode 1)
+  (setopt use-short-answers t)
 
-(menu-bar-mode 1)
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(pixel-scroll-precision-mode 1)
-(column-number-mode 1)
-(setopt use-short-answers t)
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+  :custom
+  (gc-cons-threshold (eval-when-compile (* 1024 1024 100)))
+  (tab-always-indent t)
+  (read-extended-command-predicate #'command-completion-default-include-p)
+  (vc-follow-symlinks t)
+  (inhibit-startup-message t)
+  (display-fill-column-indicator-column 80)
+  (ring-bell-function 'ignore)
+  (read-process-output-max (* 1024 1024)))
+
+(use-package modus-themes
+  :ensure t
+  :demand t
+  :if (display-graphic-p)
+  :config
+  (modus-themes-load-theme 'modus-operandi-tinted))
 
 (use-package vertico
   :ensure t
@@ -139,6 +152,7 @@
   (smartparens-global-strict-mode 1))
 
 (use-package ligature
+  :ensure t
   ;; :load-path "path-to-ligature-repo"
   :config
   (ligature-set-ligatures
@@ -266,11 +280,6 @@
   :init
   (global-corfu-mode)
   (corfu-popupinfo-mode 1))
-
-(use-package emacs
-  :custom
-  (tab-always-indent t)
-  (read-extended-command-predicate #'command-completion-default-include-p))
 
 (use-package yasnippet
   :ensure t
