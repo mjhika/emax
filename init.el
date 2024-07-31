@@ -138,8 +138,8 @@
 	 ("C-M-w" . sp-copy-sexp)
 	 ("C-M-d" . sp-delete-sexp)
 
-	 ("M-[" . sp-backward-unwrap-sexp)
-	 ("M-]" . sp-unwrap-sexp)
+	 ("M-[" . sp-join-sexp)
+	 ("M-]" . sp-raise-sexp)
 
 	 ("C-M-i" . sp-change-inner)
 	 ("M-i" . sp-change-enclosing)
