@@ -43,7 +43,7 @@
   :demand t
   :if (display-graphic-p)
   :config
-  (modus-themes-load-theme 'modus-operandi-tinted))
+  (modus-themes-load-theme 'modus-operandi))
 
 (use-package vertico
   :ensure t
