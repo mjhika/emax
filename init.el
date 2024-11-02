@@ -9,6 +9,12 @@
 (require 'use-package-ensure)
 ;; (setq use-package-always-ensure t)
 
+(use-package exec-path-from-shell
+  :ensure t
+  :init
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
+
 (use-package emacs
   :ensure t
   :config
@@ -330,7 +336,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(powershell magit corfu-popupinfo-mode corfu eat ligature clj-refactor emacs-lisp-mode elisp-mode crux doom-modeline projectile direnv yasnippet flycheck lsp-ui lsp-mode cider clojure-mode orderless smartparens which-key vertico)))
+   '(exec-path-from-shell powershell magit corfu-popupinfo-mode corfu eat ligature clj-refactor emacs-lisp-mode elisp-mode crux doom-modeline projectile direnv yasnippet flycheck lsp-ui lsp-mode cider clojure-mode orderless smartparens which-key vertico)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
